@@ -1,3 +1,3 @@
-module hello_world
+module learn-go-wth-tests/
 
 go 1.18
