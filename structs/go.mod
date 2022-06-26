@@ -1,3 +1,3 @@
-module github.com/wakatara/leanr-go-with-tests/structs
+module github.com/wakatara/learn-go-with-tests/structs
 
 go 1.18
