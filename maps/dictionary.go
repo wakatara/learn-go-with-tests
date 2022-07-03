@@ -29,3 +29,13 @@ func (dict Dictionary) Update(word string, defn string) error {
 	}
 	return ErrWordDoesNotExist
 }
+
+func (dict Dictionary) Delete(word string) error {
+	_, err := dict.Search(word)
+
+	if err != nil {
+		return ErrNotFound
+	}
+	delete(dict, word)
+	return nil
+}

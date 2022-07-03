@@ -75,7 +75,7 @@ func Test_Update(t *testing.T) {
 	})
 }
 
-func TestDelete(t *testing.T) {
+func Test_Delete(t *testing.T) {
 	word := "test"
 	dictionary := Dictionary{word: "test definition"}
 
