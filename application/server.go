@@ -29,10 +29,6 @@ func NewPlayerServer(store PlayerStore) *PlayerServer {
 	return p
 }
 
-// func (p *PlayerServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-// 	p.router.ServeHTTP(w, r)
-// }
-
 func (p *PlayerServer) leagueHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
