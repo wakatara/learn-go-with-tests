@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	poker "github.com/quii/learn-go-with-tests/command-line/v3"
+	poker "github.com/quii/learn-go-with-tests/command-line/v1"
 )
 
 const dbFileName = "game.db.json"
