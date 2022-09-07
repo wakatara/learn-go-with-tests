@@ -1,12 +1,29 @@
 package main
 
 import (
-	"io"
 	"os"
 	"testing"
 )
 
-// file_system_store_test.go
+func createTempFile(t testing.TB, initialData string) (*os.File, func()) {
+	t.Helper()
+
+	tmpfile, err := os.CreateTemp("", "db")
+
+	if err != nil {
+		t.Fatalf("could not create temp file %v", err)
+	}
+
+	tmpfile.Write([]byte(initialData))
+
+	removeFile := func() {
+		tmpfile.Close()
+		os.Remove(tmpfile.Name())
+	}
+
+	return tmpfile, removeFile
+}
+
 func TestFileSystemStore(t *testing.T) {
 
 	t.Run("league from a reader", func(t *testing.T) {
@@ -73,25 +90,6 @@ func TestFileSystemStore(t *testing.T) {
 		want := 1
 		assertScoreEquals(t, got, want)
 	})
-}
-
-func createTempFile(t testing.TB, initialData string) (io.ReadWriteSeeker, func()) {
-	t.Helper()
-
-	tmpfile, err := os.CreateTemp("", "db")
-
-	if err != nil {
-		t.Fatalf("could not create temp file %v", err)
-	}
-
-	tmpfile.Write([]byte(initialData))
-
-	removeFile := func() {
-		tmpfile.Close()
-		os.Remove(tmpfile.Name())
-	}
-
-	return tmpfile, removeFile
 }
 
 func assertScoreEquals(t testing.TB, got, want int) {
