@@ -16,6 +16,8 @@ var dummyPlayerStore = &poker.StubPlayerStore{}
 var dummyStdIn = &bytes.Buffer{}
 var dummyStdOut = &bytes.Buffer{}
 
+const PlayerPrompt = "Please enter the number of players: "
+
 type BlindAlerter interface {
 	ScheduleAlertAt(duration time.Duration, amount int)
 }
@@ -45,7 +47,7 @@ func TestCLI(t *testing.T) {
 		cli.PlayPoker()
 
 		got := stdout.String()
-		want := "Please enter the number of players: "
+		want := PlayerPrompt
 
 		if got != want {
 			t.Errorf("got %q, want %q", got, want)
